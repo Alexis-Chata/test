@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $http = new GuzzleHttp\Client;
+    $response = $http->post('http://aprendiendo.jademlearning.com/login/index.php', [
+        'form_params' => [
+            'username' =>  '48073100',
+            'password' =>  '48073100',
+        ],
+    ]);
     return view('welcome');
 });
 
