@@ -1,5 +1,7 @@
 <?php
 
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,14 +16,33 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $http = new GuzzleHttp\Client;
-    $response = $http->post('http://aprendiendo.jademlearning.com/login/index.php', [
+
+    $response = Http::contentType("text/html; charset=utf-8")->bodyFormat('none')->post('http://aprendiendo.jademlearning.com/login/index.php', [
         'form_params' => [
-            'username' =>  '48073100',
-            'password' =>  '48073100',
-        ],
-    ]);
-    return view('welcome');
+            'client_id' => 'test_id',
+            'secret' => 'test_secret',
+        ]
+    ])->json();
+    return $response;
+
+    // $client = new Client();
+    // $res = $client->request('POST', 'http://aprendiendo.jademlearning.com/login/index.php', [
+    //     'form_params' => [
+    //         'client_id' => 'test_id',
+    //         'secret' => 'test_secret',
+    //     ]
+    // ]);
+    // return $res->getStatusCode();
+
+
+    // $http = new Client();
+    // $response = $http->post('http://aprendiendo.jademlearning.com/login/index.php', [
+    //     'form_params' => [
+    //         'username' =>  '48073100',
+    //         'password' =>  '48073100',
+    //     ],
+    // ]);
+    // return view('welcome');
 });
 
 Route::middleware([
