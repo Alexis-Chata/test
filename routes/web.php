@@ -19,8 +19,8 @@ Route::get('/', function () {
 
     $response = Http::contentType("text/html; charset=utf-8")->bodyFormat('none')->post('http://aprendiendo.jademlearning.com/login/index.php', [
         'form_params' => [
-            'client_id' => 'test_id',
-            'secret' => 'test_secret',
+            'username' => '48073100',
+            'password' => '48073100',
         ]
     ])->json();
     return $response;
