@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
+    return view('up');
+
     $response = Http::contentType("text/html; charset=utf-8")->bodyFormat('none')->post('http://aprendiendo.jademlearning.com/login/index.php', [
         'form_params' => [
             'username' => '48073100',
